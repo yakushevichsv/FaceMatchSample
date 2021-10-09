@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		216F73B4271206AD00A90EB8 /* SelectImageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F73B3271206AD00A90EB8 /* SelectImageCoordinator.swift */; };
+		216F73B72712081D00A90EB8 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F73B62712081D00A90EB8 /* CameraView.swift */; };
+		216F73B92712084000A90EB8 /* PhotoLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F73B82712084000A90EB8 /* PhotoLibraryView.swift */; };
 		21B63DF727119C9800BB2779 /* FaceMatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B63DF627119C9800BB2779 /* FaceMatchApp.swift */; };
 		21B63DFB27119C9900BB2779 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21B63DFA27119C9900BB2779 /* Assets.xcassets */; };
 		21B63DFE27119C9900BB2779 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21B63DFD27119C9900BB2779 /* Preview Assets.xcassets */; };
@@ -20,6 +23,7 @@
 		21B63E352711BF4F00BB2779 /* CheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B63E342711BF4F00BB2779 /* CheckView.swift */; };
 		21B63E372711C1AD00BB2779 /* CheckboxAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B63E362711C1AD00BB2779 /* CheckboxAction.swift */; };
 		21B63E392711CC6A00BB2779 /* CheckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B63E382711CC6A00BB2779 /* CheckViewModel.swift */; };
+		21B63E402711CE5300BB2779 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B63E3F2711CE5300BB2779 /* AppCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		216F73B3271206AD00A90EB8 /* SelectImageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageCoordinator.swift; sourceTree = "<group>"; };
+		216F73B62712081D00A90EB8 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		216F73B82712084000A90EB8 /* PhotoLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryView.swift; sourceTree = "<group>"; };
 		21B63DF327119C9800BB2779 /* FaceMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B63DF627119C9800BB2779 /* FaceMatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceMatchApp.swift; sourceTree = "<group>"; };
 		21B63DFA27119C9900BB2779 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -56,6 +63,7 @@
 		21B63E342711BF4F00BB2779 /* CheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckView.swift; sourceTree = "<group>"; };
 		21B63E362711C1AD00BB2779 /* CheckboxAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxAction.swift; sourceTree = "<group>"; };
 		21B63E382711CC6A00BB2779 /* CheckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckViewModel.swift; sourceTree = "<group>"; };
+		21B63E3F2711CE5300BB2779 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +91,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		216F73B22712058A00A90EB8 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				216F73B62712081D00A90EB8 /* CameraView.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		216F73B52712080500A90EB8 /* PhotoLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				216F73B82712084000A90EB8 /* PhotoLibraryView.swift */,
+			);
+			path = PhotoLibrary;
+			sourceTree = "<group>";
+		};
 		21B63DEA27119C9800BB2779 = {
 			isa = PBXGroup;
 			children = (
@@ -110,7 +134,7 @@
 				21B63E262711A41400BB2779 /* Scenes */,
 				21B63E2227119CC500BB2779 /* Models */,
 				21B63E2027119CAC00BB2779 /* Services */,
-				21B63DF627119C9800BB2779 /* FaceMatchApp.swift */,
+				21B63E3E2711CE4000BB2779 /* App */,
 				21B63DFA27119C9900BB2779 /* Assets.xcassets */,
 				21B63DFC27119C9900BB2779 /* Preview Content */,
 			);
@@ -176,6 +200,8 @@
 		21B63E262711A41400BB2779 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				216F73B52712080500A90EB8 /* PhotoLibrary */,
+				216F73B22712058A00A90EB8 /* Camera */,
 				21B63E272711A42900BB2779 /* SelectImage */,
 			);
 			path = Scenes;
@@ -186,6 +212,7 @@
 			children = (
 				21B63E282711A45200BB2779 /* SelectImageView.swift */,
 				21B63E2A2711A58E00BB2779 /* SelectImageViewModel.swift */,
+				216F73B3271206AD00A90EB8 /* SelectImageCoordinator.swift */,
 			);
 			path = SelectImage;
 			sourceTree = "<group>";
@@ -219,10 +246,27 @@
 		21B63E332711BF1700BB2779 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				21B63E3B2711CDDA00BB2779 /* CheckView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		21B63E3B2711CDDA00BB2779 /* CheckView */ = {
+			isa = PBXGroup;
+			children = (
 				21B63E342711BF4F00BB2779 /* CheckView.swift */,
 				21B63E382711CC6A00BB2779 /* CheckViewModel.swift */,
 			);
-			path = Views;
+			path = CheckView;
+			sourceTree = "<group>";
+		};
+		21B63E3E2711CE4000BB2779 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				21B63DF627119C9800BB2779 /* FaceMatchApp.swift */,
+				21B63E3F2711CE5300BB2779 /* AppCoordinator.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,10 +402,14 @@
 				21B63E2B2711A58E00BB2779 /* SelectImageViewModel.swift in Sources */,
 				21B63E392711CC6A00BB2779 /* CheckViewModel.swift in Sources */,
 				21B63E2F2711AB8D00BB2779 /* GradientBackgroundStyle.swift in Sources */,
+				216F73B92712084000A90EB8 /* PhotoLibraryView.swift in Sources */,
 				21B63E292711A45200BB2779 /* SelectImageView.swift in Sources */,
 				21B63E372711C1AD00BB2779 /* CheckboxAction.swift in Sources */,
 				21B63E322711ADAB00BB2779 /* TextAction.swift in Sources */,
+				21B63E402711CE5300BB2779 /* AppCoordinator.swift in Sources */,
+				216F73B72712081D00A90EB8 /* CameraView.swift in Sources */,
 				21B63DF727119C9800BB2779 /* FaceMatchApp.swift in Sources */,
+				216F73B4271206AD00A90EB8 /* SelectImageCoordinator.swift in Sources */,
 				21B63E352711BF4F00BB2779 /* CheckView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

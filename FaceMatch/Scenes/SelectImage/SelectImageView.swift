@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct SelectImageVIew: View {
-    let viewModel: SelectImageViewModel
+    @ObservedObject var viewModel: SelectImageViewModel
+    //@State var shouldAnimate = false
     var body: some View {
         ZStack(alignment: .leading) {
-            Color.purple.edgesIgnoringSafeArea(.all)
             VStack(spacing: 20) {
-                ForEach(viewModel.options, id: \.text) { info in
-                    button(info: info).buttonStyle(GradientBackgroundStyle())
+                ForEach(viewModel.options) { option in
+                    button(option: option).buttonStyle(GradientBackgroundStyle())
                     
                 }
                 if let checkBoxVM = viewModel.checkBoxOptions {
@@ -23,23 +23,29 @@ struct SelectImageVIew: View {
                 Spacer()
             }
         }
+        .scaleEffect(viewModel.animated ? 1 : 0)
+        .animation(.easeInOut(duration: 2.0),
+                        value: viewModel.animated)
+        .onAppear(perform: {
+            viewModel.onAppear()
+        })
         .navigationTitle(Text(viewModel.title))
-        //.navigationViewStyle(.stack)
     }
 }
 
 //MARK: - VM.Mapping
 extension SelectImageVIew {
-    func button(info: TextAction) -> some View {
-        Button(info.text,
-               action: info.action)
+    func button(option: SelectionImageOption) -> some View {
+        NavigationLink(option.localizedTitle) {
+            viewModel.coordinator.view(option: option)
+        }
     }
 }
 
 struct SelectImage_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            SelectImageVIew(viewModel: .init())
+            SelectImageVIew(viewModel: .init(animated: false))
         }
     }
 }

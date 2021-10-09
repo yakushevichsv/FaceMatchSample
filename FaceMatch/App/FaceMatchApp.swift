@@ -9,11 +9,11 @@ import SwiftUI
 
 @main
 struct FaceMatchApp: App {
+    let coordinator = AppCoordinator()
+    
     var body: some Scene {
         WindowGroup {
-            NavigationView { //TODO: Coordinator...
-                SelectImageVIew(viewModel: .init())
-            }
+            coordinator.rootView()
         }
     }
 }

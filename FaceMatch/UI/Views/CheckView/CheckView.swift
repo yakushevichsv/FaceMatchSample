@@ -20,7 +20,6 @@ struct CheckView: View {
             }
         }
     }
-
 }
 
 struct CheckView_Previews: PreviewProvider {
