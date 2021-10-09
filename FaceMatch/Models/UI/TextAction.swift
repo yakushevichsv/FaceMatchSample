@@ -20,8 +20,3 @@ struct TextAction {
     }
 }
 
-/*
-// MARK: - TextAction.Identifiable
-extension TextAction: Identifiable {
-    var id: String { text }
-}*/
