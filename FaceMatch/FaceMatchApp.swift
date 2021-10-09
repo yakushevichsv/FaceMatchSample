@@ -11,7 +11,9 @@ import SwiftUI
 struct FaceMatchApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView { //TODO: Coordinator...
+                SelectImageVIew(viewModel: .init())
+            }
         }
     }
 }

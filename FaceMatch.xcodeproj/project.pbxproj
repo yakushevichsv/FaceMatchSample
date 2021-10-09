@@ -8,12 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		21B63DF727119C9800BB2779 /* FaceMatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B63DF627119C9800BB2779 /* FaceMatchApp.swift */; };
-		21B63DF927119C9800BB2779 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B63DF827119C9800BB2779 /* ContentView.swift */; };
 		21B63DFB27119C9900BB2779 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21B63DFA27119C9900BB2779 /* Assets.xcassets */; };
 		21B63DFE27119C9900BB2779 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21B63DFD27119C9900BB2779 /* Preview Assets.xcassets */; };
 		21B63E0827119C9A00BB2779 /* FaceMatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B63E0727119C9A00BB2779 /* FaceMatchTests.swift */; };
 		21B63E1227119C9A00BB2779 /* FaceMatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B63E1127119C9A00BB2779 /* FaceMatchUITests.swift */; };
 		21B63E1427119C9A00BB2779 /* FaceMatchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B63E1327119C9A00BB2779 /* FaceMatchUITestsLaunchTests.swift */; };
+		21B63E292711A45200BB2779 /* SelectImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B63E282711A45200BB2779 /* SelectImageView.swift */; };
+		21B63E2B2711A58E00BB2779 /* SelectImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B63E2A2711A58E00BB2779 /* SelectImageViewModel.swift */; };
+		21B63E2F2711AB8D00BB2779 /* GradientBackgroundStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B63E2E2711AB8D00BB2779 /* GradientBackgroundStyle.swift */; };
+		21B63E322711ADAB00BB2779 /* TextAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B63E312711ADAB00BB2779 /* TextAction.swift */; };
+		21B63E352711BF4F00BB2779 /* CheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B63E342711BF4F00BB2779 /* CheckView.swift */; };
+		21B63E372711C1AD00BB2779 /* CheckboxAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B63E362711C1AD00BB2779 /* CheckboxAction.swift */; };
+		21B63E392711CC6A00BB2779 /* CheckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B63E382711CC6A00BB2779 /* CheckViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +42,6 @@
 /* Begin PBXFileReference section */
 		21B63DF327119C9800BB2779 /* FaceMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B63DF627119C9800BB2779 /* FaceMatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceMatchApp.swift; sourceTree = "<group>"; };
-		21B63DF827119C9800BB2779 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		21B63DFA27119C9900BB2779 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		21B63DFD27119C9900BB2779 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		21B63E0327119C9A00BB2779 /* FaceMatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FaceMatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +49,13 @@
 		21B63E0D27119C9A00BB2779 /* FaceMatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FaceMatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B63E1127119C9A00BB2779 /* FaceMatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceMatchUITests.swift; sourceTree = "<group>"; };
 		21B63E1327119C9A00BB2779 /* FaceMatchUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceMatchUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		21B63E282711A45200BB2779 /* SelectImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageView.swift; sourceTree = "<group>"; };
+		21B63E2A2711A58E00BB2779 /* SelectImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageViewModel.swift; sourceTree = "<group>"; };
+		21B63E2E2711AB8D00BB2779 /* GradientBackgroundStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundStyle.swift; sourceTree = "<group>"; };
+		21B63E312711ADAB00BB2779 /* TextAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAction.swift; sourceTree = "<group>"; };
+		21B63E342711BF4F00BB2779 /* CheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckView.swift; sourceTree = "<group>"; };
+		21B63E362711C1AD00BB2779 /* CheckboxAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxAction.swift; sourceTree = "<group>"; };
+		21B63E382711CC6A00BB2779 /* CheckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +106,11 @@
 		21B63DF527119C9800BB2779 /* FaceMatch */ = {
 			isa = PBXGroup;
 			children = (
+				21B63E2C2711AB4E00BB2779 /* UI */,
+				21B63E262711A41400BB2779 /* Scenes */,
+				21B63E2227119CC500BB2779 /* Models */,
+				21B63E2027119CAC00BB2779 /* Services */,
 				21B63DF627119C9800BB2779 /* FaceMatchApp.swift */,
-				21B63DF827119C9800BB2779 /* ContentView.swift */,
 				21B63DFA27119C9900BB2779 /* Assets.xcassets */,
 				21B63DFC27119C9900BB2779 /* Preview Content */,
 			);
@@ -125,6 +140,89 @@
 				21B63E1327119C9A00BB2779 /* FaceMatchUITestsLaunchTests.swift */,
 			);
 			path = FaceMatchUITests;
+			sourceTree = "<group>";
+		};
+		21B63E2027119CAC00BB2779 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				21B63E2127119CB400BB2779 /* Azure */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		21B63E2127119CB400BB2779 /* Azure */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Azure;
+			sourceTree = "<group>";
+		};
+		21B63E2227119CC500BB2779 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				21B63E302711AD8A00BB2779 /* UI */,
+				21B63E2327119D1B00BB2779 /* Azure */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		21B63E2327119D1B00BB2779 /* Azure */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Azure;
+			sourceTree = "<group>";
+		};
+		21B63E262711A41400BB2779 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				21B63E272711A42900BB2779 /* SelectImage */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		21B63E272711A42900BB2779 /* SelectImage */ = {
+			isa = PBXGroup;
+			children = (
+				21B63E282711A45200BB2779 /* SelectImageView.swift */,
+				21B63E2A2711A58E00BB2779 /* SelectImageViewModel.swift */,
+			);
+			path = SelectImage;
+			sourceTree = "<group>";
+		};
+		21B63E2C2711AB4E00BB2779 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				21B63E332711BF1700BB2779 /* Views */,
+				21B63E2D2711AB7A00BB2779 /* Styles */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		21B63E2D2711AB7A00BB2779 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				21B63E2E2711AB8D00BB2779 /* GradientBackgroundStyle.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		21B63E302711AD8A00BB2779 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				21B63E312711ADAB00BB2779 /* TextAction.swift */,
+				21B63E362711C1AD00BB2779 /* CheckboxAction.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		21B63E332711BF1700BB2779 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				21B63E342711BF4F00BB2779 /* CheckView.swift */,
+				21B63E382711CC6A00BB2779 /* CheckViewModel.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +355,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21B63DF927119C9800BB2779 /* ContentView.swift in Sources */,
+				21B63E2B2711A58E00BB2779 /* SelectImageViewModel.swift in Sources */,
+				21B63E392711CC6A00BB2779 /* CheckViewModel.swift in Sources */,
+				21B63E2F2711AB8D00BB2779 /* GradientBackgroundStyle.swift in Sources */,
+				21B63E292711A45200BB2779 /* SelectImageView.swift in Sources */,
+				21B63E372711C1AD00BB2779 /* CheckboxAction.swift in Sources */,
+				21B63E322711ADAB00BB2779 /* TextAction.swift in Sources */,
 				21B63DF727119C9800BB2779 /* FaceMatchApp.swift in Sources */,
+				21B63E352711BF4F00BB2779 /* CheckView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
