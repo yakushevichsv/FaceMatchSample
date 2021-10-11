@@ -17,11 +17,13 @@ struct SelectImageCoordinator {
 import SwiftUI
 extension SelectImageCoordinator {
     func view(option: SelectionImageOption) -> some View {
-        switch option {
-        case .camera:
-            return CameraView()
-        case .photos:
-            return PhotoLibraryView()
-        }
+        ImagePicker(selectedImage: .init(get: {
+            viewModel.images[option]
+        }, set: { newImage in
+            viewModel.didSelect(image: newImage,
+                                for: option)
+        }))
+        .navigationBarHidden(true)
+        .edgesIgnoringSafeArea(.all)
     }
 }
