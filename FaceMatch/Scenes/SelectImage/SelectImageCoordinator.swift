@@ -7,21 +7,18 @@
 
 import Foundation
 
-struct SelectImageCoordinator {
-    private unowned var viewModel: SelectImageViewModel!
-    init(viewModel: SelectImageViewModel) {
-        self.viewModel = viewModel
-    }
+final class SelectImageCoordinator {
+    unowned var viewModel: SelectImageViewModel!
 }
 
 import SwiftUI
 extension SelectImageCoordinator {
     func view(option: SelectionImageOption) -> some View {
         ImagePicker(selectedImage: .init(get: {
-            viewModel.images[option]
+            self.viewModel.images[option]
         }, set: { newImage in
-            viewModel.didSelect(image: newImage,
-                                for: option)
+            self.viewModel.didSelect(image: newImage,
+                                     for: option)
         }))
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.all)

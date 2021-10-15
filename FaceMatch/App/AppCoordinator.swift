@@ -8,10 +8,19 @@
 import SwiftUI
 
 final class AppCoordinator {
-    
     func rootView() -> some View {
-        NavigationView { //TODO: Coordinator...
-            SelectImageVIew(viewModel: .init())
+        NavigationView {
+            SelectImageVIew(viewModel: rootModel())
         }
+    }
+    
+    func rootModel() -> SelectImageViewModel {
+        let coordinator = SelectImageCoordinator()
+        let viewModel = SelectImageViewModel(coordinator: coordinator,
+                                             checkBoxViewModel: .init(),
+                                             apiClient: .init(),
+                                             imageProcessor: .init())
+        coordinator.viewModel = viewModel
+        return viewModel
     }
 }

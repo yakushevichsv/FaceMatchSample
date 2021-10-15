@@ -52,7 +52,7 @@ extension SelectImageVIew {
 struct SelectImage_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            SelectImageVIew(viewModel: .init(animated: true))
+            SelectImageVIew(viewModel: AppCoordinator().rootModel())
         }
     }
 }

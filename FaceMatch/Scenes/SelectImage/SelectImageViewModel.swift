@@ -20,23 +20,31 @@ final class SelectImageViewModel: ObservableObject {
     private (set) var azureOperations = [SelectionImageOption: CancellableOperation]()
     
     let title: String
-    
-    private let options: [SelectionImageOption] = SelectionImageOption.allCases
+    let options: [SelectionImageOption] = SelectionImageOption.allCases
     
     let checkBoxOptions: CheckViewModel
-    lazy var coordinator: SelectImageCoordinator = {
-        .init(viewModel: self)
-    }()
     
-    let faceFeatureDetector = FaceFeaturesDetector()
-    let imageProcessor = ImageProcessor()
+    let coordinator: SelectImageCoordinator
+    let faceFeatureDetector: FaceFeaturesDetector?
+    let imageProcessor: ImageProcessor
     
-    let apiClient = APIClient()
+    let apiClient: APIClient
     
-    init(animated: Bool = false) {
+    init(coordinator: SelectImageCoordinator,
+         checkBoxViewModel: CheckViewModel,
+         apiClient: APIClient,
+         imageProcessor: ImageProcessor,
+         faceFeatureDetector: FaceFeaturesDetector? = nil,
+         animated: Bool = false) {
+        self.coordinator = coordinator
+        self.faceFeatureDetector = faceFeatureDetector
+        self.imageProcessor = imageProcessor
+        self.apiClient = apiClient
         self.animated = animated
+        checkBoxOptions = checkBoxViewModel
+        
         title = "Select Image Source".localized
-        checkBoxOptions = .init()
+        
         configure()
     }
     
