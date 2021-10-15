@@ -21,7 +21,7 @@ struct SelectImageVIew: View {
                     }, set: { newValue in
                         viewModel.showSheet = newValue
                     })) {
-                        viewModel.onDismiss(optin: option)
+                        viewModel.onDismiss(option: option)
                     } content: {
                         viewModel.coordinator.view(option: option)
                     }
