@@ -21,7 +21,7 @@ final class SelectImageViewModel: ObservableObject {
     
     let title: String
     
-    private (set)var options = [SelectionImageOption]()
+    private let options: [SelectionImageOption] = SelectionImageOption.allCases
     
     let checkBoxOptions: CheckViewModel
     lazy var coordinator: SelectImageCoordinator = {
@@ -48,7 +48,6 @@ final class SelectImageViewModel: ObservableObject {
     }
     
     private func configure() {
-        options = SelectionImageOption.allCases
         configureCheckBox()
     }
     
