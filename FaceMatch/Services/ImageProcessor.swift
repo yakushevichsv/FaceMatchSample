@@ -27,8 +27,8 @@ struct ImageProcessor {
     func compress(image uiImage: UIImage,
                   initialScale: CGFloat = 1.0,
                   sizeInMbRatio: CGFloat = 0.3) -> UIImage {
-        func imageOrDefault(from data: Data) -> UIImage {
-            UIImage(data: data) ?? uiImage
+        func imageOrDefault(from data: Data?) -> UIImage {
+            data.flatMap { UIImage(data: $0) } ?? uiImage
         }
         
         //assert(!Thread.isMainThread)

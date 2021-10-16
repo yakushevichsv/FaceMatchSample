@@ -71,22 +71,20 @@ final class APIClient {
                 }
             }
             return output.data
-        }.sink(receiveCompletion: { (completion) in
+        }.tryMap{ data in
+            try JSONDecoder().decode([FaceModel].self, from: data)
+        }
+        .receive(on: DispatchQueue.main, options: nil)
+        .sink(receiveCompletion: { (completion) in
             switch completion {
             case .finished:
                 break
             case .failure(let error):
                 callback(.failure(error))
             }
-        }) { (data) in
-            let decoder = JSONDecoder()
-            do {
-                let faceModels = try decoder.decode([FaceModel].self, from: data)
-                callback(.success(faceModels))
-            } catch {
-                callback(.failure(error))
-            }
-        }
+        }, receiveValue: { (faceModel) in
+            callback(.success(faceModel))
+        })
         return result
     }
 
@@ -128,20 +126,18 @@ final class APIClient {
                 }
             }
             return output.data
-        }.sink(receiveCompletion: { (completion) in
+        }.tryMap{ data in
+            try JSONDecoder().decode(FaceIdentityModel.self, from: data)
+        }.receive(on: DispatchQueue.main, options: nil)
+        .sink(receiveCompletion: { (completion) in
             switch completion {
             case .finished:
                 break
             case .failure(let error):
                 callback(.failure(error))
             }
-        }) { (data) in
-            do {
-                let model = try JSONDecoder().decode(FaceIdentityModel.self, from: data)
-                callback(.success(model))
-            } catch {
-                callback(.failure(error))
-            }
+        }) { (model) in
+            callback(.success(model))
         }
         return result
     }

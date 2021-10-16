@@ -41,4 +41,8 @@ extension UIImage {
     func scaledImage(by scale: CGFloat) -> UIImage? {
         return type(of: self).scale(image: self, by: scale)
     }
+    
+    func pngOrJPEGData() -> Data? {
+        pngData() ?? jpegData(compressionQuality: 1.0)
+    }
 }

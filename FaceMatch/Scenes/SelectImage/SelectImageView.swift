@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SelectImageVIew: View {
     @ObservedObject var viewModel: SelectImageViewModel
+    
     var body: some View {
         ZStack(alignment: .leading) {
             VStack(spacing: 20) {
@@ -29,14 +30,24 @@ struct SelectImageVIew: View {
                 CheckView(viewModel: viewModel.checkBoxOptions)
                 Spacer()
             }
-        }
+        }.alert(viewModel.alertMessage.valueOrEmpty,
+        isPresented: .init(get: {
+            viewModel.displayAlert
+        }, set: { newValue in
+            viewModel.displayAlert = newValue
+        }),
+        actions: {
+            Button("OK".localized) {
+                
+            }
+        })
         .scaleEffect(viewModel.animated ? 1 : 0)
         .animation(.easeInOut(duration: 0.5),
                         value: viewModel.animated)
         .onAppear(perform: {
             viewModel.onAppear()
         })
-        .navigationTitle(Text(viewModel.title))
+        .navigationTitle(Text("Select Image Source".localized))
     }
 }
 
