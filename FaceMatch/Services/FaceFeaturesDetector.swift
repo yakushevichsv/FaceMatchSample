@@ -20,13 +20,13 @@ struct FaceFeaturesDetector {
     let cid: CIDetector
     init?(context: CIContext? = nil,
           tracking: Bool = true,
-          highAccuracy: Bool = false) {
+          highAccuracy: Bool = true) {
          guard let cid = CIDetector(ofType: CIDetectorTypeFace,
                           context: context,
                           options: [CIDetectorAccuracy: highAccuracy ? CIDetectorAccuracyHigh
                                                                      : CIDetectorAccuracyLow,
                                     CIDetectorTracking: tracking,
-                                    CIDetectorMaxFeatureCount: 2]) else {
+                                    CIDetectorMaxFeatureCount: 10]) else {
                             return nil
         }
         self.cid = cid

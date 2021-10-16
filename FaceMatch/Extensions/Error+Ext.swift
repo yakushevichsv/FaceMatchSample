@@ -16,6 +16,15 @@ public extension Error {
     var isNetworkAccessError: Bool {
         return (self as NSError).isNetworkAccessError
     }
+    
+    var localizedDescription: String {
+        if let httpError = self as? HTTPError {
+            return httpError.localizedDescription
+        } else if let azureError = self as? AzureError {
+            return azureError.localizedDescription
+        }
+        return (self as NSError).localizedDescription
+    }
 }
 
 public extension NSError {

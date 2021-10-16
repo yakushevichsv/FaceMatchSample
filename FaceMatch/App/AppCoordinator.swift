@@ -19,7 +19,8 @@ final class AppCoordinator {
         let viewModel = SelectImageViewModel(coordinator: coordinator,
                                              checkBoxViewModel: .init(),
                                              apiClient: .init(),
-                                             imageProcessor: .init())
+                                             imageProcessor: .init(),
+                                             faceFeatureDetector: .init())
         coordinator.viewModel = viewModel
         return viewModel
     }

@@ -21,13 +21,18 @@ final class APIClient {
     let subscriptionKey = "1cf64ee7a9184ba88807108653183ac6"
     let baseURL = URL(string: "https://yakushevichsv.cognitiveservices.azure.com/face/v1.0")
     
-    func detectUserFrom(imageData data: Data,
-                        completion callback: @escaping AzureDetectCompletionBlockType) -> CancellableOperation {
+    private func publisher<T: Decodable>(value: AnyPublisher<Data,Error>) -> AnyPublisher<T,Error> {
+        value.tryMap{ data in
+            try JSONDecoder().decode(T.self, from: data)
+        }.eraseToAnyPublisher()
+    }
+    
+    func detectUserFrom(imageData data: Data) -> AnyPublisher<[FaceModel], Error> {
         let relativePath = "detect"
 
         let queryItems: [String: Any] = ["returnFaceId": true,
             "returnFaceLandmarks": false,
-            "recognitionModel": "recognition_01",
+            "recognitionModel": "recognition_02",
             "returnFaceAttributes": "emotion",
             "returnRecognitionModel": false,
             "detectionModel": "detection_01"
@@ -71,26 +76,12 @@ final class APIClient {
                 }
             }
             return output.data
-        }.tryMap{ data in
-            try JSONDecoder().decode([FaceModel].self, from: data)
         }
-        .receive(on: DispatchQueue.main, options: nil)
-        .sink(receiveCompletion: { (completion) in
-            switch completion {
-            case .finished:
-                break
-            case .failure(let error):
-                callback(.failure(error))
-            }
-        }, receiveValue: { (faceModel) in
-            callback(.success(faceModel))
-        })
-        return result
+        return publisher(value: result.eraseToAnyPublisher())
     }
 
     func identify(faceId1: String,
-                  faceId2: String,
-                  completion callback: @escaping  AzureIdentityCompletionBlockType) -> CancellableOperation {
+                  faceId2: String) -> AnyPublisher<FaceIdentityModel, Error> {
 
         let relativePath = "verify"
 
@@ -126,19 +117,8 @@ final class APIClient {
                 }
             }
             return output.data
-        }.tryMap{ data in
-            try JSONDecoder().decode(FaceIdentityModel.self, from: data)
-        }.receive(on: DispatchQueue.main, options: nil)
-        .sink(receiveCompletion: { (completion) in
-            switch completion {
-            case .finished:
-                break
-            case .failure(let error):
-                callback(.failure(error))
-            }
-        }) { (model) in
-            callback(.success(model))
         }
-        return result
+        
+        return publisher(value: result.eraseToAnyPublisher())
     }
 }

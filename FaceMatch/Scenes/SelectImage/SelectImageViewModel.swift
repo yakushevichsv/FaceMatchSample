@@ -90,37 +90,70 @@ final class SelectImageViewModel: ObservableObject {
         
         //TODO: display progress bar...
         let ciImage = CIImage(data: imageData)
-        let faceFeatures = ciImage.flatMap { self.faceFeatureDetector?.detectFaceExpressions(image: $0,
-                                                                                             orientation: nil) } ?? [:]
+        let faceFeatures = ciImage.flatMap { faceFeatureDetector?.detectFaceExpressions(image: $0) }
         
-        guard let firstFaceFeature = faceFeatures.first?.value else {
-            displayAlert(message: "No face detected".localized)
-            return
-        }
-        imageFeatures[option] = firstFaceFeature
+        let values = faceFeatures?.values.map { $0 }
         
-        
-        let newOp = apiClient.detectUserFrom(imageData: imageData) { [weak self] result in
-            guard let self = self, self.azureOperations.removeValue(forKey: option).hasValue else { return }
-            debugPrint("Received results for azure operation with option \(option)")
-            do {
-                let faceModels = try result.get()
-                //TODO: process faceModels....
-                if let firstModel = faceModels.first {
-                    self.azureIds[option] = firstModel
-                    debugPrint("!! Received azure first model is happy \(firstModel.faceAttributes.emotion?.happiness ?? 0.0)")
-                    self.detectSimilarityOnNeed()
-                } else {
-                    self.azureIds.removeValue(forKey: option)
+        if let values = values, !values.isEmpty {
+            imageFeatures[option] = values.first!
+            if values.count == 2, let last = values.last {
+                let newOption: SelectionImageOption
+                switch option {
+                case .first:
+                    newOption = .second
+                case .second:
+                    newOption = .first
                 }
-            } catch {
-                guard !error.isCancelled else { return }
-                debugPrint("!! Azure processing error \(error.localizedDescription)")
-                self.displayAlert(error: error)
+                imageFeatures[newOption] = last
+            }
+        } else {
+            imageFeatures.removeValue(forKey: option)
+            if faceFeatureDetector.hasValue {
+                displayAlert(message: "No face detected".localized)
             }
         }
+        
+        let newOp = apiClient.detectUserFrom(imageData: imageData)
+        .receive(on: DispatchQueue.main)
+        .sink { [weak self] completion in
+            self?.azureOperations.removeValue(forKey: option)
+            guard let self = self, case .failure(let error) = completion else {
+                return
+            }
+            guard !error.isCancelled else { return }
+            debugPrint("!! Azure processing error \(error.localizedDescription)")
+            self.displayAlert(error: error)
+        } receiveValue: { [weak self] faceModels in
+            self?.process(option: option,
+                          faceModels: faceModels)
+        }
+
         debugPrint("Scheduled azure operation for option \(option)")
         azureOperations[option] = newOp
+    }
+    
+    private func process(option: SelectionImageOption,
+                         faceModels: [FaceModel]) {
+        guard azureOperations.removeValue(forKey: option).hasValue else { return }
+        debugPrint("Received results for azure operation with option \(option)")
+        if let firstModel = faceModels.first {
+            azureIds[option] = firstModel
+            if faceModels.count == 2, let last = faceModels.last {
+                let newOption: SelectionImageOption
+                switch option {
+                case .first:
+                    newOption = .second
+                case .second:
+                    newOption = .first
+                }
+                azureIds[newOption] = last
+            }
+            debugPrint("!! Received azure first model is happy \(firstModel.faceAttributes.emotion?.happiness ?? 0.0)")
+            detectSimilarityOnNeed()
+        } else {
+            azureIds.removeValue(forKey: option)
+            displayAlert(message: "No face detected".localized)
+        }
     }
     
     private func displayAlert(message: String) {
@@ -137,20 +170,22 @@ final class SelectImageViewModel: ObservableObject {
         guard ids.count == 2, let faceId1 = ids.first, let faceId2 = ids.last else {
             return
         }
+        let keyPath = \SelectImageViewModel.identityOperation
+        self[keyPath: keyPath]?.cancel()
         
-        identityOperation?.cancel()
-        
-        let newOp = apiClient.identify(faceId1: faceId1, faceId2: faceId2) { [weak self] result in
-            guard let self = self else { return }
-            self.identityOperation = nil
-            do {
-                let identityModel = try result.get()
-                self.displayAlert(message: (identityModel.identical ? "Similar person on photoes" : "Seems that we have different persons").localized)
-            } catch {
-                self.displayAlert(error: error)
+        self[keyPath: keyPath] = apiClient.identify(faceId1: faceId1, faceId2: faceId2)
+        .receive(on: DispatchQueue.main)
+        .sink { [weak self] completion in
+            self?[keyPath: keyPath] = nil
+            guard let self = self, case .failure(let error) = completion else {
+                return
             }
+            guard !error.isCancelled else { return }
+            debugPrint("!! detectSimilarityOnNeed \(error.localizedDescription)")
+            self.displayAlert(error: error)
+        } receiveValue: { [weak self] identityModel in
+            self?.displayAlert(message: (identityModel.identical ? "Similar person on photoes" : "Seems that we have different persons").localized)
         }
-        identityOperation = newOp
     }
     
     func onDismiss(option: SelectionImageOption) {}
