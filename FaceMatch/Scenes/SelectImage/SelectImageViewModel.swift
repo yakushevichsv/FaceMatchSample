@@ -86,7 +86,8 @@ final class SelectImageViewModel: ObservableObject {
             return
         }
         
-        //TODO: use as an example image https://www.pngkey.com/png/full/364-3645515_happy-woman-happy-face-woman-png.png
+        //same person after 6 years -
+        /* https://static.boredpanda.com/blog/wp-content/uploads/2020/08/children-photos-before-and-after-6-years-etojiviefoto-nikita-khnyunin-5f2a596c3600b__880.jpg */
         
         //TODO: display progress bar...
         let ciImage = CIImage(data: imageData)

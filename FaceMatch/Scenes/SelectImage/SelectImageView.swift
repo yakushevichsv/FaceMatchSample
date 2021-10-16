@@ -13,6 +13,7 @@ struct SelectImageVIew: View {
     var body: some View {
         ZStack(alignment: .leading) {
             VStack(spacing: 20) {
+                Spacer()
                 ForEach(viewModel.options) { option in
                     button(option: option).buttonStyle(GradientBackgroundStyle())
                     .onTapGesture {
@@ -26,6 +27,7 @@ struct SelectImageVIew: View {
                     } content: {
                         viewModel.coordinator.view(option: option)
                     }
+                    .transition(.slide)
                 }
                 CheckView(viewModel: viewModel.checkBoxOptions)
                 Spacer()
@@ -41,9 +43,6 @@ struct SelectImageVIew: View {
                 
             }
         })
-        .scaleEffect(viewModel.animated ? 1 : 0)
-        .animation(.easeInOut(duration: 0.5),
-                        value: viewModel.animated)
         .onAppear(perform: {
             viewModel.onAppear()
         })
